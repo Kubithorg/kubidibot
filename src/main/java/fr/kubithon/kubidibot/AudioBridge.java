@@ -38,6 +38,11 @@ public class AudioBridge implements AudioReceiveHandler
             throw new IllegalStateException("Channel is not defined");
         }
 
+        if (connection == null)
+        {
+            return;
+        }
+
         try
         {
             connection.close();
