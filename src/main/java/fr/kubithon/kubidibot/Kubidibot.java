@@ -30,6 +30,7 @@ public class Kubidibot implements IBot
 
         // Registering configs
         config.from("config/app.json");
+        config.from("config/network.json");
 
         // Registering commands
         commands.group().prefix(config.at("app.prefix")).apply(this::commands);
