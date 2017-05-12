@@ -101,4 +101,14 @@ public class AudioBridge implements AudioReceiveHandler
             e.printStackTrace();
         }
     }
+
+    public double getVolume()
+    {
+        return volume;
+    }
+
+    public void setVolume(double volume)
+    {
+        this.volume = volume;
+    }
 }

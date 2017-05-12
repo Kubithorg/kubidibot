@@ -3,6 +3,7 @@ package fr.kubithon.kubidibot;
 import com.google.inject.Inject;
 import fr.kubithon.kubidibot.command.CommandDrop;
 import fr.kubithon.kubidibot.command.CommandPop;
+import fr.kubithon.kubidibot.command.CommandVolume;
 import fr.litarvan.krobot.IBot;
 import fr.litarvan.krobot.Krobot;
 import fr.litarvan.krobot.command.CommandManager;
@@ -42,6 +43,7 @@ public class Kubidibot implements IBot
     {
         commands.make("pop", CommandPop.class).register();
         commands.make("drop", CommandDrop.class).register();
+        commands.make("volume [value:number]", CommandVolume.class).register();
     }
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException
