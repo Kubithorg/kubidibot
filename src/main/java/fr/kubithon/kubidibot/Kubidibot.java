@@ -58,7 +58,7 @@ public class Kubidibot implements IBot
     @SubscribeEvent
     public void onJoin(GuildMemberJoinEvent event)
     {
-        event.getMember().getUser().openPrivateChannel().complete().sendMessage(config.at("app.welcome"));
+        event.getMember().getUser().openPrivateChannel().complete().sendMessage(config.at("app.welcome")).queue();
     }
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException
