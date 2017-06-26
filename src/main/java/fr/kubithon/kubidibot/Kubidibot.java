@@ -4,14 +4,17 @@ import com.google.inject.Inject;
 import fr.kubithon.kubidibot.command.CommandDrop;
 import fr.kubithon.kubidibot.command.CommandPop;
 import fr.kubithon.kubidibot.command.CommandVolume;
-import fr.litarvan.krobot.IBot;
-import fr.litarvan.krobot.Krobot;
-import fr.litarvan.krobot.command.CommandManager;
-import fr.litarvan.krobot.config.ConfigProvider;
 import javax.security.auth.login.LoginException;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import net.dv8tion.jda.core.hooks.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.krobot.IBot;
+import org.krobot.Krobot;
+import org.krobot.command.CommandManager;
+import org.krobot.config.ConfigProvider;
 
 public class Kubidibot implements IBot
 {
@@ -24,10 +27,16 @@ public class Kubidibot implements IBot
     @Inject
     private ConfigProvider config;
 
+    @Inject
+    private JDA jda;
+
     @Override
     public void init()
     {
         LOGGER.info("Starting Kubidibot v{}...", VERSION);
+
+        // Registering events
+        jda.addEventListener(this);
 
         // Registering configs
         config.from("config/app.json");
@@ -44,6 +53,12 @@ public class Kubidibot implements IBot
         commands.make("pop", CommandPop.class).register();
         commands.make("drop", CommandDrop.class).register();
         commands.make("volume [value:number]", CommandVolume.class).register();
+    }
+
+    @SubscribeEvent
+    public void onJoin(GuildMemberJoinEvent event)
+    {
+        event.getMember().getUser().openPrivateChannel().complete().sendMessage(config.at("app.welcome"));
     }
 
     public static void main(String[] args) throws LoginException, InterruptedException, RateLimitedException

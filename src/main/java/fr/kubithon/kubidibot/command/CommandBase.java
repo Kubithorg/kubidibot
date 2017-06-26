@@ -1,15 +1,15 @@
 package fr.kubithon.kubidibot.command;
 
-import fr.litarvan.krobot.command.CommandContext;
-import fr.litarvan.krobot.command.CommandHandler;
-import fr.litarvan.krobot.command.SuppliedArgument;
-import fr.litarvan.krobot.util.Dialog;
 import java.util.Map;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.GuildVoiceState;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.managers.AudioManager;
 import org.jetbrains.annotations.NotNull;
+import org.krobot.command.CommandContext;
+import org.krobot.command.CommandHandler;
+import org.krobot.command.SuppliedArgument;
+import org.krobot.util.Dialog;
 
 public abstract class CommandBase implements CommandHandler
 {

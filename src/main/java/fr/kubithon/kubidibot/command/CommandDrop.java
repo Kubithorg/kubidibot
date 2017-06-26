@@ -2,11 +2,11 @@ package fr.kubithon.kubidibot.command;
 
 import com.google.inject.Inject;
 import fr.kubithon.kubidibot.AudioBridge;
-import fr.litarvan.krobot.command.CommandContext;
-import fr.litarvan.krobot.util.Dialog;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.managers.AudioManager;
 import org.jetbrains.annotations.NotNull;
+import org.krobot.command.CommandContext;
+import org.krobot.util.Dialog;
 
 public class CommandDrop extends CommandBase
 {

@@ -2,13 +2,13 @@ package fr.kubithon.kubidibot;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import fr.litarvan.krobot.config.ConfigProvider;
 import java.io.IOException;
 import java.net.Socket;
 import net.dv8tion.jda.core.audio.AudioReceiveHandler;
 import net.dv8tion.jda.core.audio.CombinedAudio;
 import net.dv8tion.jda.core.audio.UserAudio;
 import net.dv8tion.jda.core.managers.AudioManager;
+import org.krobot.config.ConfigProvider;
 
 @Singleton
 public class AudioBridge implements AudioReceiveHandler
