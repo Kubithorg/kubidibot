@@ -18,7 +18,7 @@ public abstract class CommandBase implements CommandHandler
     {
         GuildVoiceState voice = context.getMember().getVoiceState();
 
-        if (!voice.inVoiceChannel())
+        if (!voice.inVoiceChannel() && requireVoiceChannel())
         {
             context.sendMessage(Dialog.warn("Erreur", "Vous n'êtes pas dans un channel vocal"));
             return;
@@ -34,4 +34,9 @@ public abstract class CommandBase implements CommandHandler
     }
 
     protected abstract void handle(@NotNull CommandContext context, AudioManager manager, VoiceChannel channel) throws Exception;
+
+    protected boolean requireVoiceChannel()
+    {
+        return false;
+    }
 }

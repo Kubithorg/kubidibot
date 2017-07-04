@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
 import net.dv8tion.jda.core.audio.AudioReceiveHandler;
 import net.dv8tion.jda.core.audio.CombinedAudio;
 import net.dv8tion.jda.core.audio.UserAudio;
@@ -99,6 +100,7 @@ public class AudioBridge implements AudioReceiveHandler
 
         try
         {
+            //System.out.println(Arrays.toString(data));
             connection.getOutputStream().write(data);
         }
         catch (IOException e)

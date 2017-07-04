@@ -26,4 +26,10 @@ public class CommandPop extends CommandBase
         message.delete().queue();
         context.sendMessage(Dialog.info("Bridge établi", "Connexion réussie au receveur"));
     }
+
+    @Override
+    protected boolean requireVoiceChannel()
+    {
+        return true;
+    }
 }
