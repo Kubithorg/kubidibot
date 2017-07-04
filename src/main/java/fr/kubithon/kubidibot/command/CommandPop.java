@@ -17,14 +17,14 @@ public class CommandPop extends CommandBase
     @Override
     protected void handle(@NotNull CommandContext context, AudioManager manager, VoiceChannel channel) throws Exception
     {
-        Message message = context.sendMessage(Dialog.info("Connexion...", "Connexion au receveur en cours...")).get();
+        Message message = context.sendMessage(Dialog.info("Démarrage...", "Démarrage du serveur en cours...")).get();
         manager.openAudioConnection(channel);
 
         bridge.setAudio(manager);
-        bridge.connect();
+        bridge.start();
 
         message.delete().queue();
-        context.sendMessage(Dialog.info("Bridge établi", "Connexion réussie au receveur"));
+        context.sendMessage(Dialog.info("Bridge démarré", "Serveur démarré ! En attente de connexion..."));
     }
 
     @Override

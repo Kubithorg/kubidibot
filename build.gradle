@@ -20,4 +20,6 @@ repositories {
 
 dependencies {
     compile 'org.krobot:krobot-framework:2.2.0'
+    compile 'javazoom:jlayer:1.0.1'
+    compile files('libs/lame-3.98.4.jar')
 }
