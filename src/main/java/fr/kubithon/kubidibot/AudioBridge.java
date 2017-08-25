@@ -19,12 +19,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.krobot.config.ConfigProvider;
 
+/**
+ * The Audio Bridge
+ *
+ * <p>
+ *     This is the server that redirect the audio received in a
+ *     Discord voice channel to its clients.<br>
+ *     The audio format is {@link AudioReceiveHandler#OUTPUT_FORMAT}.
+ * </p>
+ *
+ * @author Litarvan
+ * @version 1.0.0
+ */
 @Singleton
 public class AudioBridge implements AudioReceiveHandler
 {
     private static final Logger LOGGER = LogManager.getLogger("AudioBridge");
 
-    private AudioManager audio;
+    private AudioManager audio; // A voice channel audio reader
     private ServerSocket server;
     private CopyOnWriteArrayList<Socket> clients;
     private Thread serverThread;
@@ -33,6 +45,12 @@ public class AudioBridge implements AudioReceiveHandler
     @Inject
     private ConfigProvider config;
 
+    /**
+     * Starts the server in a separated thread, receive clients
+     * and add them to the {@link #clients} list.
+     *
+     * @throws IOException If the server socket init threw one
+     */
     public void start() throws IOException
     {
         if (audio == null)
@@ -70,6 +88,9 @@ public class AudioBridge implements AudioReceiveHandler
         LOGGER.info("Server listening on port " + port);
     }
 
+    /**
+     * Stop the server and its thread
+     */
     public void stop()
     {
         if (audio == null)
@@ -102,6 +123,9 @@ public class AudioBridge implements AudioReceiveHandler
         LOGGER.info("Server stopped");
     }
 
+    /**
+     * Set the current channel audio manager
+     */
     public void setAudio(AudioManager audio)
     {
         this.audio = audio;
@@ -133,9 +157,14 @@ public class AudioBridge implements AudioReceiveHandler
     @Override
     public void handleUserAudio(UserAudio userAudio)
     {
+        // From what i saw, this method is never called
         send(userAudio.getAudioData(volume));
     }
 
+    /**
+     * Encode the given bytes to MP3 and then send it to every clients<br>
+     * Currently it looks like the MP3 encoder always returns an array full of 0
+     */
     private void send(byte[] data)
     {
         if (server == null)
@@ -143,10 +172,9 @@ public class AudioBridge implements AudioReceiveHandler
             return;
         }
 
-        System.out.println("PCM : " + Arrays.toString(data));
         byte[] mp3 = encodePcmToMp3(data);
-        System.out.println("MP3 : " + Arrays.toString(mp3));
 
+        // Clean up old clients
         int oldSize = clients.size();
         clients.removeIf(socket -> socket.isClosed() || socket.isOutputShutdown());
 
@@ -159,7 +187,6 @@ public class AudioBridge implements AudioReceiveHandler
         {
             try
             {
-                System.out.println("CLIENT");
                 c.getOutputStream().write(mp3);
             }
             catch (IOException e)
@@ -169,6 +196,10 @@ public class AudioBridge implements AudioReceiveHandler
         });
     }
 
+    /**
+     * Encode the given Discord audio bytes to MP3
+     * Currently it looks like the MP3 encoder always returns an array full of 0
+     */
     private byte[] encodePcmToMp3(byte[] pcm)
     {
         LameEncoder encoder = new LameEncoder(AudioReceiveHandler.OUTPUT_FORMAT, 256, MPEGMode.STEREO, Lame.QUALITY_HIGHEST, false);

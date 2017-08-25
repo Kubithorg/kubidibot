@@ -11,6 +11,18 @@ import org.krobot.command.CommandHandler;
 import org.krobot.command.SuppliedArgument;
 import org.krobot.util.Dialog;
 
+/**
+ * The Command Base
+ *
+ * <p>
+ *     Since all commands requires to be in a voice channel,
+ *     this class check this operation, and give the channel
+ *     {@link AudioManager} to the commands.
+ * </p>
+ *
+ * @author Litarvan
+ * @version 1.0.0
+ */
 public abstract class CommandBase implements CommandHandler
 {
     @Override
@@ -21,12 +33,6 @@ public abstract class CommandBase implements CommandHandler
         if (!voice.inVoiceChannel() && requireVoiceChannel())
         {
             context.sendMessage(Dialog.warn("Erreur", "Vous n'êtes pas dans un channel vocal"));
-            return;
-        }
-
-        if (!context.getMember().hasPermission(Permission.ADMINISTRATOR) && !(context.getUser().getDiscriminator().equals("8232") && context.getUser().getName().equals("Litarvan")))
-        {
-            context.sendMessage(Dialog.error("Non-autorisé", "Seul un administrateur a le droit d'effectuer cette commande"));
             return;
         }
 

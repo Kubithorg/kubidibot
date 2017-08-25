@@ -14,6 +14,10 @@ import javafx.scene.media.MediaPlayer;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
+/**
+ * This is simply a test, tried a lot of things but my computer
+ * audio is bugged anyway.
+ */
 public class AudioReceiver
 {
     public static void main(String[] args) throws Exception

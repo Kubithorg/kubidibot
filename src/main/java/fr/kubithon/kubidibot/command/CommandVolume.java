@@ -3,12 +3,26 @@ package fr.kubithon.kubidibot.command;
 import com.google.inject.Inject;
 import fr.kubithon.kubidibot.AudioBridge;
 import java.util.Map;
+import net.dv8tion.jda.core.Permission;
 import org.jetbrains.annotations.NotNull;
 import org.krobot.command.CommandContext;
 import org.krobot.command.CommandHandler;
 import org.krobot.command.SuppliedArgument;
+import org.krobot.permission.UserRequires;
 import org.krobot.util.Dialog;
 
+/**
+ * The Volume command
+ *
+ * <p>
+ *     Simply set the volume of the sent audio. Only an admin can
+ *     run this.
+ * </p>
+ *
+ * @author Litarvan
+ * @version 1.0.0
+ */
+@UserRequires(Permission.ADMINISTRATOR)
 public class CommandVolume implements CommandHandler
 {
     @Inject
