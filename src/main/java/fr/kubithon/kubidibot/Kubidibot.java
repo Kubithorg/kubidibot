@@ -4,7 +4,9 @@ import com.google.inject.Inject;
 import fr.kubithon.kubidibot.command.CommandDrop;
 import fr.kubithon.kubidibot.command.CommandPop;
 import fr.kubithon.kubidibot.command.CommandVolume;
+
 import javax.security.auth.login.LoginException;
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
@@ -21,14 +23,14 @@ import org.krobot.config.ConfigProvider;
 
 /**
  * Kubidibot main class
- *
  * <p>
- *     Register commands and configs, also contains the welcome message sender.<br>
- *     Fields that has the @{@link Inject} annotation are automatically filled
- *     during initialization.
- * </p>
+ * Registers commands and loads configurations, also contains the welcome message sender.
+ * <p>
+ * Fields that have the {@link Inject} annotation are automatically filled
+ * set initialization.
  *
  * @author Litarvan
+ * @author Oscar Davis (olsdavis)
  * @version 1.0.0
  */
 public class Kubidibot implements IBot
@@ -64,13 +66,15 @@ public class Kubidibot implements IBot
     }
 
     /**
-     * Register the commands.<br><br>
-     *
-     * Because of the line in {@link #init()} that calls this method, commands
-     * registered here automatically have a prefix defined in config/app.json#prefix.<br>
-     *
+     * Registers bot's commands.<br>
+     * <p>
+     * The prefix of these commands is already set in {@link #init()}, thanks to the
+     * {@link org.krobot.command.GroupBuilder#prefix} method.
+     * <p>
      * Note that the first commands.make argument is a path, parsed to read the
-     * arguments. See {@link CommandBuilder#path(String)}
+     * arguments.
+     *
+     * @see CommandBuilder#path(String)
      */
     private void commands()
     {
@@ -82,7 +86,7 @@ public class Kubidibot implements IBot
     @SubscribeEvent
     public void onJoin(GuildMemberJoinEvent event)
     {
-        // Displays the welcome message from the config
+        // Displays the welcome message written in the configuration file
         PrivateChannel channel = event.getMember().getUser().openPrivateChannel().complete();
         channel.sendMessage(config.at("app.welcome")).queue();
     }

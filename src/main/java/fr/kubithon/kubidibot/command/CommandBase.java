@@ -12,15 +12,16 @@ import org.krobot.command.SuppliedArgument;
 import org.krobot.util.Dialog;
 
 /**
- * The Command Base
+ * Abstraction layer for the commands.
  *
  * <p>
- *     Since all commands requires to be in a voice channel,
- *     this class check this operation, and give the channel
- *     {@link AudioManager} to the commands.
+ *     This class's {@link #handle(CommandContext, Map)} implementation insures
+ *     that the user that runs the command is in a voice channel. Also provides an {@link AudioManager}
+ *     to the {@link #handle(CommandContext, AudioManager, VoiceChannel)} implementation.
  * </p>
  *
  * @author Litarvan
+ * @author Oscar Davis (olsdavis)
  * @version 1.0.0
  */
 public abstract class CommandBase implements CommandHandler

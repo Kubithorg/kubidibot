@@ -11,7 +11,7 @@ import org.krobot.permission.UserRequires;
 import org.krobot.util.Dialog;
 
 /**
- * The Drop Command
+ * Drop command's implementation.
  *
  * <p>
  *     Disconnect Kubidibot from the voice channel and close

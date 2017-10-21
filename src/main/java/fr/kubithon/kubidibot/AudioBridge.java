@@ -23,7 +23,7 @@ import org.krobot.config.ConfigProvider;
  * The Audio Bridge
  *
  * <p>
- *     This is the server that redirect the audio received in a
+ *     This is the server that redirects the audio received in a
  *     Discord voice channel to its clients.<br>
  *     The audio format is {@link AudioReceiveHandler#OUTPUT_FORMAT}.
  * </p>

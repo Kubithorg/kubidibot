@@ -13,11 +13,11 @@ import org.krobot.permission.UserRequires;
 import org.krobot.util.Dialog;
 
 /**
- * The Pop Command
+ * Pop command's implementation.
  *
  * <p>
- *     Spawn Kubidibot in the caller's voice channel, and start the
- *     {@link AudioBridge}. Only an admin can run this.
+ *     Spawns Kubidibot in the caller's voice channel, and starts the
+ *     {@link AudioBridge}. Only an admin can run this command.
  * </p>
  *
  * @author Litarvan

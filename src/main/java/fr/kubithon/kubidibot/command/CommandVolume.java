@@ -12,7 +12,7 @@ import org.krobot.permission.UserRequires;
 import org.krobot.util.Dialog;
 
 /**
- * The Volume command
+ * Volume command's implementation.
  *
  * <p>
  *     Simply set the volume of the sent audio. Only an admin can
