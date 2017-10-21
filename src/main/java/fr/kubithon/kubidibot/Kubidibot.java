@@ -22,9 +22,9 @@ import org.krobot.command.CommandManager;
 import org.krobot.config.ConfigProvider;
 
 /**
- * Kubidibot main class
+ * Kubidibot's main class.
  * <p>
- * Registers commands and loads configurations, also contains the welcome message sender.
+ * Registers commands and loads configuration files, also contains the welcome message sender.
  * <p>
  * Fields that have the {@link Inject} annotation are automatically filled
  * set initialization.
