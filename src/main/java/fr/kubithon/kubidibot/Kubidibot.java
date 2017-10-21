@@ -26,8 +26,7 @@ import org.krobot.config.ConfigProvider;
  * <p>
  * Registers commands and loads configuration files, also contains the welcome message sender.
  * <p>
- * Fields that have the {@link Inject} annotation are automatically filled
- * set initialization.
+ * Fields that have the {@link Inject} annotation are automatically set during the initialization.
  *
  * @author Litarvan
  * @author Oscar Davis (olsdavis)
