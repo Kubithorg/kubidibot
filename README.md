@@ -21,9 +21,7 @@ The sound is received thanks to a Forge mod.
 * Change the volume (e.g. 50%): `#volume 50`
 * Display the current volume: `#volume`
 
-## Configs
-
-Everything is configurable:
+## Configuration files
 
 * config/app.json: Contains the commands' prefix and the welcome message
 * config/network.json: Contains the YouTube channel's credentials
